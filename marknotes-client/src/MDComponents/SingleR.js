@@ -10,7 +10,7 @@ export default function SingleR({headers, date, MDText, snipHeaderDepth=0}){
             <HeaderStack headers={headers.slice(snipHeaderDepth, headers.length - 1)}/>
             <i>{date}</i>
             {/* <ReactMarkdown children={MDText}/> */}
-            <Editor value={MDText} setValue={()=>{}} readOnly={"nocursor"}/>
-            {/* <p style={{"whiteSpace": "pre-wrap"}}>{MDText}</p> */}
+            {/* <Editor value={MDText} setValue={()=>{}} readOnly={"nocursor"}/> */}
+            <p style={{"whiteSpace": "pre-wrap"}}>{MDText}</p>
         </div>
 }

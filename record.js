@@ -1,6 +1,8 @@
 import express from 'express'
 var router = express.Router();
 
+import * as fs from 'fs';
+
 import { MDBlob } from "./MDBlob.js"
 
 
@@ -73,14 +75,37 @@ async function ParseMDBodyAndUpload(MDBody, date, HeaderStack = []){
         ).then(ChildIDs => ((ChildIDs.some(id => id !== null) || ChildIDs.length === 0) && HeaderStack.length !== 0) ? UploadMDSection(TerminalBody, date, HeaderStack, ChildIDs.filter(id => id !== null)) : null)
 }
 
-
+const InsecureStrHash = (str) => {
+    var hash = 0;
+    for (var i = 0; i < str.length; i++) {
+        var char = str.charCodeAt(i);
+        hash = ((hash<<5)-hash)+char;
+        hash = hash & hash; // Convert to 32bit integer
+    }
+    return hash;
+}
 
 router.post("/", async (req, res) => {
     console.log("Record Post Body:", req.body)
-    let date;
+    var date = Date.parse(req.body.date)
+
+    if(isNaN(date)){
+        date = new Date()
+    }
+
     const text = req.body.MDText
+
+
+    console.log(process.cwd());
+    
+    fs.writeFile(`/app/tmp_Entries/${date.toISOString()}%${InsecureStrHash(text)}.md`, text, function(err) {
+        if(err) {
+            return console.log(err);
+        }
+        console.log("The file was saved!");
+    }); 
     // console.log("Parsing", text)
-    ParseMDBodyAndUpload(text, isNaN(date = Date.parse(req.body.date)) ? Date() : date)
+    ParseMDBodyAndUpload(text, date)
     res.end();
 })
 

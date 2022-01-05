@@ -8,7 +8,7 @@ export default function LiveReviewJournal({text, setText, Submit}){
             <Editor value={text} setValue={setText}/>
             <button onClick={(e)=>{
                 if(window.confirm("SUBMIT!?")){
-                    Submit(text).then(console.log).then(()=>{setText("")});
+                    Submit(text);
                 }
             }} style={{width:"min-content"}}>Submit</button>
         </div>
