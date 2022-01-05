@@ -1,0 +1,8 @@
+.SingleRRoot{
+    flex: 1 0 auto;
+    border: 2px solid black;
+}
+
+.SingleRRoot:not(:last-child) {
+    margin-right:20px;
+}

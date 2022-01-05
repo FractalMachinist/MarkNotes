@@ -76,6 +76,7 @@ async function ParseMDBodyAndUpload(MDBody, date, HeaderStack = []){
 
 
 router.post("/", async (req, res) => {
+    console.log("Record Post Body:", req.body)
     let date;
     const text = req.body.MDText
     // console.log("Parsing", text)
@@ -84,8 +85,8 @@ router.post("/", async (req, res) => {
 })
 
 router.get("/", async (req, res) => {
-    console.log("Find by ID:", req.body)
-    MDBlob.findById(req.body.id).then(res.json.bind(res))
+    console.log("Find by ID:", req.query.id)
+    MDBlob.findById(req.query.id).then(res.json.bind(res))
 })
 
 

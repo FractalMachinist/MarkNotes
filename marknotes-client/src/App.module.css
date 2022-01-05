@@ -1,0 +1,15 @@
+.App {
+
+}
+
+.EV {
+  display:flex;
+  flex-direction: row;
+}
+
+
+.Editor {
+  flex:2 0 40%;
+  display:flex;
+  flex-direction: column;
+}

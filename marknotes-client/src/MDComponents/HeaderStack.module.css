@@ -1,0 +1,6 @@
+h1 { background-color: rgba(var(--h-color), 1.0);}
+h2 { background-color: rgba(var(--h-color), 0.9);}
+h3 { background-color: rgba(var(--h-color), 0.8);}
+h4 { background-color: rgba(var(--h-color), 0.6);}
+h5 { background-color: rgba(var(--h-color), 0.5);}
+h6 { background-color: rgba(var(--h-color), 0.4);}
