@@ -87,7 +87,7 @@ const InsecureStrHash = (str) => {
 
 router.post("/", async (req, res) => {
     console.log("Record Post Body:", req.body)
-    var date = Date.parse(req.body.date)
+    var date = new Date(Date.parse(req.body.date))
 
     if(isNaN(date)){
         date = new Date()
