@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: marknotes
+  name: marknotes-pod
+  labels:
+    app: marknotes-pod
+spec:
+  volumes:
+    - name: app-pvc
+      persistentVolumeClaim:
+        claimName: app-pvc
+    - name: mongodb-pvc
+      persistentVolumeClaim:
+        claimName: mongodb-pvc
+  containers:
+    - name: server
+      image: node:lts
+      ports:
+        - containerPort: 30100
+          name: "http-server"
+      volumeMounts:
+        - mountPath: "/app"
+          name: app-pvc
+      env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secrets
+              key: MONGO_INITDB_ROOT_USERNAME
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secrets
+              key: MONGO_INITDB_ROOT_PASSWORD
+        - name: CHOKIDAR_USEPOLLING
+          value: "true"
+      workingDir: "/app/marknotes-client"
+      command: ["/bin/sh","-c", "--"]
+      args: ["yarn start & npm --prefix ../ start"]
+      # command: ["tail", "-f", "/dev/null"]
+    - name: mongodb
+      image: mongo:4.4.10 # My CPU lacks AVX support, so not running MongoDB 5.0+
+      ports:
+        - containerPort: 27017
+          name: "mongo-port"
+      volumeMounts:
+        - mountPath: "/data/db"
+          name: "mongodb-pvc"
+      env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secrets
+              key: MONGO_INITDB_ROOT_USERNAME
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secrets
+              key: MONGO_INITDB_ROOT_PASSWORD

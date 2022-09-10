@@ -1,8 +1,8 @@
 .MultiR {
-    display:flex;
-    flex:auto;
+    /* display:flex;
+    width:40%;
     flex-direction: column;
     max-height:100%;
-    max-width:100%;
-    overflow:auto;
+    overflow-y:auto; */
+    overflow-y:auto;
 }

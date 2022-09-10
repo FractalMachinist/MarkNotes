@@ -15,6 +15,7 @@ app.use(express.urlencoded())
 import route_all from "./all.js"
 import route_record from "./record.js"
 import route_aggregate from "./aggregate.js"
+import route_templates from "./templates.js"
 
 
 
@@ -30,16 +31,7 @@ function main(){
     app.use("/all", route_all)
     app.use("/record", route_record)
     app.use("/aggregate", route_aggregate)
-
-
-
-
-
-
-
-
-
-
+    app.use("/t", route_templates)
 
 }
 

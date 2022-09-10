@@ -1,15 +1,20 @@
+:root {
+  background-color: #444;
+}
+
 .App {
-
+  max-width:100%;
+  height:100vh;
 }
 
-.EV {
-  display:flex;
-  flex-direction: row;
+.LiveReviewJournal {
+  min-height:100vh;
+  display: grid;
+  grid-template-columns: 6fr 4fr;
+  grid-template-rows: fit-content(0);
 }
-
 
 .Editor {
-  flex:2 0 40%;
-  display:flex;
-  flex-direction: column;
+  height:100vh;
+  /* position: absolute; */
 }

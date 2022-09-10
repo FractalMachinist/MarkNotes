@@ -1,8 +1,17 @@
 .SingleRRoot{
-    flex: 1 0 auto;
+    max-height:40vh;
+    overflow-y:auto;
+    overflow-x:visible;
+    min-width:200px;
+    flex: 1 1 300px;
     border: 2px solid black;
 }
 
 .SingleRRoot:not(:last-child) {
     margin-right:20px;
+}
+
+.SingleRText {
+    overflow-wrap:break-word;
+    white-space: pre-wrap;
 }

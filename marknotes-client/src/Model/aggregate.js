@@ -7,7 +7,7 @@ export default async function RequestAggregate(HeaderStack){
     const url_str = "http://"+window.location.hostname + ":30110" +"/aggregate"
     console.log(url_str)
     var url = new URL(url_str);
-    var params = HeaderStack.map(h => ["headers", h])
+    var params = [...HeaderStack].reverse().map(h => ["headers", h])
 
     url.search = new URLSearchParams(params).toString()
 

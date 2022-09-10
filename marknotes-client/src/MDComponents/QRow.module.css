@@ -1,5 +1,4 @@
 .QRow {
-    width: max-content;
 }
 
 .QRow:not(:first-child) {
@@ -7,12 +6,18 @@
 }
 
 .QScroll {
+    overflow-x:auto;
+    width:100%;
+}
+
+.QFlex {
     display:flex;
     flex-direction: row;
     --h-color: 90, 90, 90
 }
 
 .RowHeader {
+    max-width: 100%;
     width:max-content;
     --h-color: 128, 128, 128;
     position:sticky;

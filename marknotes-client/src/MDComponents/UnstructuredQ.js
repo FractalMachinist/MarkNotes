@@ -6,15 +6,16 @@ import QRow from "./QRow"
 import styles from "./UnQ.module.css"
 
 export default function UnstructuredQ({body}){
-    console.log("UQ Body:", body)
+    // console.log("UQ Body:", body)
     const [Qs, setQs] = useState([]);
 
     useEffect(() => {
         async function grabNewNQs(){
 
             if(body.length) {
-                const NQs = ParseMDBody(body).filter(b => b.Body.length).map(b => b.HeaderStack)
-                console.log({"NQ":NQs})
+                // const NQs = ParseMDBody(body).filter(b => b.Body.length).map(b => b.HeaderStack)
+                const NQs = ParseMDBody(body).filter(b => b.Body.length).map(b => [b.HeaderStack[b.HeaderStack.length-1]])
+                // console.log({"NQ":NQs})
                 setQs(NQs)
             }
         }

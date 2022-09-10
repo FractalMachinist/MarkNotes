@@ -11,6 +11,6 @@ export default function SingleR({headers, date, MDText, snipHeaderDepth=0}){
             <i>{date}</i>
             {/* <ReactMarkdown children={MDText}/> */}
             {/* <Editor value={MDText} setValue={()=>{}} readOnly={"nocursor"}/> */}
-            <p style={{"whiteSpace": "pre-wrap"}}>{MDText}</p>
+            <p className={styles.SingleRText}>{MDText}</p>
         </div>
 }

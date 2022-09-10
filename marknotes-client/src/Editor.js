@@ -5,6 +5,7 @@ import { useMemo } from 'react'
 import CodeMirror from 'rodemirror'
 import {HighlightStyle, tags as t} from "@codemirror/highlight"
 
+import "./Editor.css"
 
 const chalky = "#e5c07b",
 	coral = "#e06c75",
@@ -100,6 +101,7 @@ const ModHighlightStyle = HighlightStyle.define([
 
 
 export default function Editor({value, setValue}) {
+	console.log("oneDark", oneDark[0])
 	const extensions = useMemo(() => [basicSetup, [oneDark[0], ModHighlightStyle], markdown()], [])
 
 	return <CodeMirror
@@ -110,5 +112,6 @@ export default function Editor({value, setValue}) {
             }
           }}
         extensions={extensions}
+
     />
 }

@@ -68,7 +68,9 @@ async function ParseMDBodyAndUpload(MDBody, date, HeaderStack = []){
     // MDBody is expected to have 0 or more root headers
     // Split them up and handle each one individually with ParseMDHeaderAndUpload
 
-    const [TerminalBody, ...Subsections] = MDBody.split(/(?:^|\n+)# /)
+    var [TerminalBody, ...Subsections] = MDBody.split(/(?:^|\n+)# /)
+
+    if(TerminalBody.length <= 1) TerminalBody = "" // Assume that single-character entries are not real
 
     return Promise.all(
             Subsections.map(Section => ParseMDSectionAndUpload(Section, date, HeaderStack))

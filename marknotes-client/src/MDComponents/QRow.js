@@ -22,7 +22,9 @@ export default function QRow({headers}){
     return <div className={styles.QRow}>
         <HeaderStack headers={headers} className={styles.RowHeader}/>
         <div className={styles.QScroll}>
-            {Rs.map(R => <SingleR key={R._id} snipHeaderDepth={headers.length} {...R}/>)}
+            <div className={styles.QFlex}>
+                {Rs.map(R => <SingleR key={R._id} snipHeaderDepth={headers.length} {...R}/>)}
+            </div>
         </div>
         
     </div>
